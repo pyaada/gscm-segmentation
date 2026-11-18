@@ -1,0 +1,28 @@
+[workspace]
+authors = ["Piyush Yadav <pyadav@connect.ust.hk>"]
+channels = ["conda-forge"]
+name = "gscm-seg"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[activation.env]
+BASE_DIR = "/workspace_bk/piyush/test-gscm/data/sentinal_datastore"
+OUTPUT = "/workspace_bk/piyush/test-gscm/runs"
+
+[system-requirements]
+cuda = "12.2"
+
+[dependencies]
+geoai = ">=0.30.0"
+lxml = ">=6.0.2,<7"
+pandas = ">=3.0.0,<4"
+geopandas = ">=1.1.2,<2"
+matplotlib = ">=3.10.8,<4"
+openpyxl = ">=3.1.5,<4"
+jupyter = ">=1.1.1,<2"
+notebook = ">=7.5.3,<8"
+termcolor = ">=3.3.0,<4"
+terratorch = ">=1.2.1,<2"
+tensorboard = ">=2.20.0,<3"

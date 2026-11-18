@@ -1,0 +1,29 @@
+# Prithvi-EO 2.0 300M encoder + UNet decoder (semantic segmentation).
+# Only the configuration required to reproduce the Prithvi experiments in the paper.
+
+defaults:
+  backbone: prithvi_eo_v2_300
+  backbone_pretrained: true
+  backbone_num_frames: 1
+
+  necks:
+    - name: SelectIndices
+      indices: [5, 11, 17, 23]
+    - name: ReshapeTokensToImage
+    - name: LearnedInterpolateToPyramidal
+
+  decoder: UNetDecoder
+  decoder_channels: [512, 256, 128, 64]
+  head_dropout: 0.1
+  num_classes: 2
+
+# Band order must match the datamodule (terratorch_segment.py):
+# 3 bands are stored as B02, B03, B04 -> BLUE, GREEN, RED
+channels_3:
+  backbone_bands: ["BLUE", "GREEN", "RED"]
+
+channels_4:
+  backbone_bands: ["RED", "GREEN", "BLUE", "NIR_NARROW"]
+
+channels_6:
+  backbone_bands: ["RED", "GREEN", "BLUE", "NIR_NARROW", "SWIR_1", "SWIR_2"]
